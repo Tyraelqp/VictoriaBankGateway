@@ -178,28 +178,9 @@ class AuthorizationRequest extends Request
         $form->{$constructElementMethod}(self::BACKREF, $this->_requestFields[self::BACKREF]);
         $form->{$constructElementMethod}(self::P_SIGN, $this->_requestFields[self::P_SIGN]);
         $form->{$constructElementMethod}(self::LANG, $this->_requestFields[self::LANG]);
-        $formHtml = $form->setFormMethod('POST')
+        return $form->setFormMethod('POST')
                          ->setFormAction($this->_gatewayUrl)
                          ->renderForm(!$this->_debugMode)
         ;
-        echo /** @lang text */
-        <<<HTML
-<html>
-    <head>
-        <title>Please wait...</title>
-        <style>
-            input{
-                width:500px;
-                margin: 5px;
-            }
-        </style>
-    </head>
-    <body>
-    Please wait...
-        {$formHtml}
-    </body>
-</html>
-HTML;
-        exit;
     }
 }

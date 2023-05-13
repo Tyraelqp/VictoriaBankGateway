@@ -439,7 +439,7 @@ class VictoriaBankGateway
                     VictoriaBank\Authorization\AuthorizationRequest::MERCH_ADDRESS => $this->merchantAddress,
                 ], $this->gatewayUrl, $this->debug, $this->sslVerify
             );
-            $request->request();
+            return $request->request();
         } catch (VictoriaBank\Exception $e) {
             if ($this->debug) {
                 throw $e;
