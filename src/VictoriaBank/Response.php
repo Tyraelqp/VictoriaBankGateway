@@ -112,13 +112,10 @@ abstract class Response implements ResponseInterface
         }
         switch ((int)$this->_responseFields[self::ACTION]) {
             case self::STATUS_SUCCESS:
-                return $this->_validateSignature();
             case self::STATUS_DUPLICATED:
-                throw new Exception('Bank response: Duplicate transaction');
             case self::STATUS_DECLINED:
-                throw new Exception('Bank response: Transaction declined');
             case self::STATUS_FAULT:
-                throw new Exception('Bank response: Processing fault');
+                return $this->_validateSignature();
             default:
                 throw new Exception('Undefined bank response status');
         }
